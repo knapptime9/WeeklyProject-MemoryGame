@@ -1,0 +1,27 @@
+html, body{
+  height: 100%;
+}
+
+#gameBoard{
+  background-color: #9EA4B2;
+  border: black 1px solid;
+  height: 80%;
+  width: 80%;
+  margin: 0px auto;
+  padding: 24px
+}
+
+div#gameBoard > div {    /*target all child divs within gameboard div */
+  background-image: url("Images/flippedBackground.jpeg");
+  border: #000 1px solid;
+  width:70px;
+  height:70px;
+  float:left;
+  margin: 10px;
+  padding: 20px;
+  font-size:64px;
+  cursor: pointer;
+  text-align:center;
+
+
+}

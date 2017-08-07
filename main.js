@@ -28,11 +28,45 @@ function newGame(){
 function flipTile(tile, value){
   //initial check to see if (1st tile is hidden and less than 2 tiles flipped.)
   if (tile.innerHTML == "" && tile_values.length < 2){
-  // tile.style.background = "white";
   tile.style.background = "#FFF";
   tile.innerHTML= value;
+  if (tile_values.length ==0 ){ // conditional = 0 tiles flipped
+      tile_values.push(value);
+      tile_ids.push(tile.id);
+    }
+  else if(tile_values.length == 1){ //conditional = 1 tile flipped
+    tile_values.push(value);
+    tile_ids.push(tile.id);
+    if (tile_values[0]==tile_values[1]){ //check if two flipped tiles match.  ie IF tile_values ARE equal THEN TRUE
+    flippedCounter = flippedCounter + 2 //increase  endgame conditional flipped counter by 2
+    tile_values = [];
+    tile_ids = [];  //clear tile values and ids
+    }
+    if (flippedCounter == tiles_array.length){  //CHECK IF ENDGAME CONDITIONAL IS TRUE
+      alert( "YOU WIN -- CLICK TO RESTART");
+      document.getElementById("gameBoard").innerHTML = "";
+      newGame();
+
+    }
+  }
 
 }
+  else { //2 cards flipped and Dont Match
+    function resetTile(){
+       let tile1 = document.getElementById(tile_ids[0]);
+       let tile2 = document.getElementById(tile_ids[1]);
+       tile1.style.background =  'url("Images/flippedBackground.jpeg")';
+       tile1.innerHTML="";
+       tile2.style.background = 'url("Images/flippedBackground.jpeg")';
+       tile2.innerHTML = "";
+
+       tile_values=[];
+       tile_ids=[];
+
+    }
+    setTimeout(resetTile, 700);
+  }
+
 
 }
 

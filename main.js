@@ -1,128 +1,9 @@
 let tile_values = [];
 let tile_ids = [];
-let flippedCounter = 0;
-let tiles_array =[
-    {
-			name: "BlueLink",
-      img: "./Images/BlueLink.jpeg",
-      // id: 1,
-    },
-    {
-			name: "BlueLink",
-      img: "./Images/BlueLink.jpeg",
-      // id: 1,
-    },
-    {
-      name: "boomerang",
-      img: "./Images/boomerang.jpeg",
-      // id: 2,
-    },
-    {
-      name: "boomerang",
-      img: "./Images/boomerang.jpeg",
-      // id: 2,
-    },
-    {
-  		name: "fairy",
-      img: "./Images/fairy.jpeg",
-      // id: 3,
-    },
-    {
-  		name: "fairy",
-      img: "./Images/fairy.jpeg",
-      // id: 3,
-    },
-    {
-      name: "GreenCrest",
-      img: "./Images/GreenCrest.jpeg",
-      // id: 4,
-    },
-    {
-      name: "GreenCrest",
-      img: "./Images/GreenCrest.jpeg",
-      // id: 4,
-    },
-    {
-      name: "greenLink",
-      img: "./Images/greenLink.jpeg",
-      // id: 5,
-    },
-    {
-      name: "greenLink",
-      img: "./Images/greenLink.jpeg",
-      // id: 5,
-    },
-    {
-      name: "heartContainer",
-      img: "./Images/heartContainer.jpeg",
-      // id: 6,
-    },
-    {
-      name: "heartContainer",
-      img: "./Images/heartContainer.jpeg",
-      // id: 6,
-    },
-    {
-      name: "HyruleCrest",
-      img: "./Images/HyruleCrest.jpeg",
-      // id: 7,
-    },
-    {
-      name: "HyruleCrest",
-      img: "./Images/HyruleCrest.jpeg",
-      // id: 7,
-    },
-    {
-      name: "MainTitle",
-      img: "./Images/MainTitle.jpeg",
-      // id: 8,
-    },
-    {
-      name: "MainTitle",
-      img: "./Images/MainTitle.jpeg",
-      // id: 8,
-    },
-    {
-      name: "MajoraMask",
-      img: "./Images/MajoraMask.jpeg",
-      // id: 9,
-    },
-    {
-      name: "MajoraMask",
-      img: "./Images/MajoraMask.jpeg",
-      // id: 9,
-    },
-    {
-      name: "masterSword",
-      img: "./Images/masterSword.jpeg",
-      // id: 10,
-    },
-    {
-      name: "masterSword",
-      img: "./Images/masterSword.jpeg",
-      // id: 10,
-    },
-    {
-      name: "ocarina",
-      img: "./Images/ocarina.jpeg",
-      // id: 11,
-    },
-    {
-      name: "ocarina",
-      img: "./Images/ocarina.jpeg",
-      // id: 11,
-    },
-    {
-      name: "shield",
-      img: "./Images/shield.jpeg",
-      // id: 12,
-    },
-    {
-      name: "shield",
-      img: "./Images/shield.jpeg",
-      // id: 12,
-    },
-]
+let flippedCounter = 0; //tracks # of flipped tiles for endgame conditional
+let tiles_array = ["A","A","B","B","C","C","D","D","E","E","F","F","G","G","H","H","I","I","J","J","K","K"];
+
+
 Array.prototype.shuffle_tiles = function(){
   let i=this.length, j, temp;
   while (--i > 0){
@@ -134,13 +15,24 @@ Array.prototype.shuffle_tiles = function(){
 }
 
 function newGame(){
-  flippedCounter = 0;
-  let output = "";
-  tiles_array.shuffle_tiles();
+  flippedCounter = 0;  //reset endgame counter to 0
+  let output = "";     // define variable that   will contain tile data AFTER shuffle
+  tiles_array.shuffle_tiles(); //run shuffle function on initial tile array
   for (let i=0; i < tiles_array.length; i++){
     output = output + '<div id="tile_'+i+'" onclick="flipTile(this, \''+tiles_array[i]+'\')"></div>';
-  }
-  document.getElementById('gameBoard').innerHTML = output;
+  }  //runs shuffle tile function and creates new sub-div with unique id and assigned onclick property.
+  document.getElementById('gameBoard').innerHTML = output;   //displays the generated output to browswer window
+
+}
+
+function flipTile(tile, value){
+  //initial check to see if (1st tile is hidden and less than 2 tiles flipped.)
+  if (tile.innerHTML == "" && tile_values.length < 2){
+  // tile.style.background = "white";
+  tile.style.background = "#FFF";
+  tile.innerHTML= value;
+
+}
 
 }
 
